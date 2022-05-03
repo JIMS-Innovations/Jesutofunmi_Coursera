@@ -1,13 +1,3 @@
-/******************************************************************************
- * Copyright (C) 2017 by Alex Fosdick - University of Colorado
- *
- * Redistribution, modification or use of this software in source or binary
- * forms is permitted as long as the files maintain this copyright. Users are
- * permitted to modify this and use it to learn about the field of embedded
- * software. Alex Fosdick and the University of Colorado are not liable for any
- * misuse of this material.
- *
- *****************************************************************************/
 /**
  * @file stats.c
  * @brief This is the solution to the assignment given
@@ -22,7 +12,6 @@
 
 /* Size of the Data Set */
 #define SIZE (40)
-
 
 int main()
 {
@@ -41,6 +30,8 @@ int main()
 }
 
 /* Add other Implementation File Code Here */
+
+// PRINT STATISTICS FUNCTION ************************
 void print_statistics(unsigned char array[], int size)
 {
   unsigned char min = array[0];
@@ -64,8 +55,7 @@ void print_statistics(unsigned char array[], int size)
     }
     // Mean
     sum += array[i];
-    mean = sum/size;
-    
+    mean = sum / size;
   }
 
   // median
@@ -80,41 +70,69 @@ void print_statistics(unsigned char array[], int size)
         buffer = array[i];
         array[i] = array[j];
         array[j] = buffer;
-        
       }
-      
     }
-    
   }
   int median;
   if (size % 2 != 0)
   {
-    median = (array[size/2] + array[(size/2) + 1]) / 2;
+    median = (array[size / 2] + array[(size / 2) + 1]) / 2;
   }
   else
   {
-    median = array[size/2];
+    median = array[size / 2];
   }
-  
-  
+
   unsigned int output[4] = {min, max, mean, median};
-  
+
   printf("[");
   for (int i = 0; i < 3; i++)
   {
     printf(" %d, ", output[i]);
   }
   printf("%d] \n", output[3]);
-  
-
 }
 
-void print_array(unsigned char array[], int size){
+// PRINT ARRAY FUNCTION*************************
+void print_array(unsigned char array[], int size)
+{
 
   printf("[");
-  for (int i = 0; i < size - 1 ; i++)
+  for (int i = 0; i < size - 1; i++)
   {
     printf(" %d, ", array[i]);
   }
   printf("%d] \n", array[size - 1]);
+}
+
+// FIND MEDIAN FUNCTION*************************
+int find_median(unsigned char array[], int size)
+{
+  int buffer;
+  for (int i = 0; i < size; ++i)
+  {
+    for (int j = i + 1; j < size; ++j)
+    {
+      if (array[i] > array[j])
+      {
+        buffer = array[i];
+        array[i] = array[j];
+        array[j] = buffer;
+      }
+    }
+  }
+  return buffer;
+}
+
+// FIND MEAN FUNCTION**************************
+int find_mean(unsigned char array[], int size){
+  int sum;
+  int mean;
+  for (int i = 0; i < size; i++)
+  {
+    // Mean
+    sum += array[i];
+    mean = sum / size;
+  }
+  return mean;
 }
