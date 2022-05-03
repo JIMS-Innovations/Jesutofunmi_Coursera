@@ -37,6 +37,7 @@ int main()
 
   /* Statistics and Printing Functions Go Here */
   print_statistics(test, SIZE);
+  print_array(test, SIZE);
 }
 
 /* Add other Implementation File Code Here */
@@ -106,4 +107,14 @@ void print_statistics(unsigned char array[], int size)
   printf("%d] \n", output[3]);
   
 
+}
+
+void print_array(unsigned char array[], int size){
+
+  printf("[");
+  for (int i = 0; i < size - 1 ; i++)
+  {
+    printf(" %d, ", array[i]);
+  }
+  printf("%d] \n", array[size - 1]);
 }

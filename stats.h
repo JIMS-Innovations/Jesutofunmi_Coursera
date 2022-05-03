@@ -36,5 +36,6 @@
  * @return <Add Return Informaiton here>
  */
 void print_statistics(unsigned char array[], int size);
+void print_array(unsigned char array[], int size);
 
 #endif /* __STATS_H__ */
